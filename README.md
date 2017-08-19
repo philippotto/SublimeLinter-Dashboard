@@ -4,10 +4,16 @@ Provides a dashboard like user interface for the [SublimeLinter](https://package
 The dashboard is a new view which contains a list of all linting errors/warnings in all views of the active window.
 Switching to an warning/error is as simple as double clicking or pressing enter on a line of the view.
 
-# Screenshots
+# Demo
 
-WIP
+Screenshot:
+![Screenshot](https://github.com/philippotto/SublimeLinter-Dashboard/raw/master/img/Screenshot-Linter-Dashboard.png)
 
-# Get Started
+Screencast:
+![Screencast](https://github.com/philippotto/SublimeLinter-Dashboard/raw/master/img/linter-dashboard-screencast.gif)
 
-Clone this repository into your package folder of your Sublime Text 3 installation and open the "SublimeLinter Dashboard: Open" in the command palette.
+# Installation
+
+- Ensure that you have [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) installed for Sublime Text 3 and that t works
+- Clone this repository into your package folder of your ST3 installation
+- Open "SublimeLinter Dashboard: Open" in the command palette
