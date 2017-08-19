@@ -14,6 +14,6 @@ Screencast:
 
 # Installation
 
-- Ensure that you have [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) installed for Sublime Text 3 and that t works
-- Clone this repository into your package folder of your ST3 installation
+- Ensure that you have [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) installed for Sublime Text 3 and that it works
+- Clone this repository into the package folder of your ST3 installation
 - Open "SublimeLinter Dashboard: Open" in the command palette
