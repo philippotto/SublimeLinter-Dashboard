@@ -48,6 +48,7 @@ def show_dashboard():
 		
 
 	sublime.active_window().focus_view(linting_view)
+	linting_view.sel().clear()
 
 	return mapping, linting_view
 
@@ -57,10 +58,10 @@ def focus_error_by_sel(selView):
 	if len(regions) > 0:
 		(row, col) = selView.rowcol(regions[0].a)
 		if row < len(active_line_mapping) and active_line_mapping[row] is not None:
-			(view, line_number, colNumber) = active_line_mapping[row]
+			(view, line_number, col_number) = active_line_mapping[row]
 			view.window().focus_view(view)
 			if line_number is not None:
-				point = view.text_point(line_number, colNumber)
+				point = view.text_point(line_number, col_number)
 				view.show(point)
 
 				view.sel().clear()
@@ -102,8 +103,11 @@ def refresh_dashboard():
 				lines.append(" " + marker + "  " + str(line_number) + ": " + error[1])
 				active_line_mapping.append((view, line_number, col_number))
 
-		lines.append("\n")
+		lines.append("")
 		active_line_mapping.append(None)
+	if len(lines) == 0:
+		lines.append("No errors or warnings found!")
+
 	text = "\n".join(lines)
 
 	linting_view.run_command("sublime_linter_dashboard_write", {"text": text})

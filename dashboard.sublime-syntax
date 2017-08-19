@@ -7,10 +7,11 @@ file_extensions:
 scope: text.sublimelinterdashboard
 contexts:
   main:
+    - match: '^No errors or warnings found!$'
+      scope: markup.inserted.diff
     - match: '^    ([0-9]+)'
       scope: constant.character.escape.c
     - match: '^ !  ([0-9]+)'
       scope: keyword.control.c
     - match: '^[^ ]+.*$'
       scope: string.quoted.double
-    # - match: ':.*$'
