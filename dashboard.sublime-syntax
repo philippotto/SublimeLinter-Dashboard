@@ -1,0 +1,16 @@
+%YAML 1.2
+---
+name: sublimelinterdashboard
+hidden: true
+file_extensions:
+  - sublimelinterdashboard
+scope: text.sublimelinterdashboard
+contexts:
+  main:
+    - match: '^    ([0-9]+)'
+      scope: constant.character.escape.c
+    - match: '^ !  ([0-9]+)'
+      scope: keyword.control.c
+    - match: '^[^ ]+.*$'
+      scope: string.quoted.double
+    # - match: ':.*$'

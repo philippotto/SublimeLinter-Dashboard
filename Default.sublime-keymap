@@ -1,0 +1,10 @@
+// some bindings are in OS-specific files
+[
+  {
+      "keys": ["enter"],
+      "command": "sublime_linter_dashboard_enter",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
+  }
+]
