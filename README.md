@@ -6,8 +6,9 @@ Switching to an warning/error is as simple as double clicking or pressing enter 
 
 # Demo
 
-Screenshot:
+Screenshots:
 ![Screenshot](https://github.com/philippotto/SublimeLinter-Dashboard/raw/master/img/Screenshot-Linter-Dashboard.png)
+![Screenshot](https://github.com/philippotto/SublimeLinter-Dashboard/raw/master/img/Screenshot-Linter-Dashboard-Help.png)
 
 Screencast:
 ![Screencast](https://github.com/philippotto/SublimeLinter-Dashboard/raw/master/img/linter-dashboard-screencast.gif)
