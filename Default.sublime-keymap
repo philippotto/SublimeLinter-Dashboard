@@ -6,5 +6,40 @@
       "context": [
         { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
       ]
+  },
+  {
+      "keys": ["escape"],
+      "command": "sublime_linter_dashboard_esc",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
+  },
+  {
+      "keys": ["u"],
+      "command": "sublime_linter_dashboard_unfocus",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
+  },
+  {
+      "keys": ["s"],
+      "command": "sublime_linter_dashboard_show",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
+  },
+  {
+      "keys": ["w"],
+      "command": "sublime_linter_dashboard_toggle_warnings",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
+  },
+  {
+      "keys": ["h"],
+      "command": "sublime_linter_dashboard_help",
+      "context": [
+        { "key": "selector", "operator": "equal", "operand": "text.sublimelinterdashboard" },
+      ]
   }
 ]

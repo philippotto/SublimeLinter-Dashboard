@@ -11,6 +11,8 @@ contexts:
       scope: markup.inserted.diff
     - match: '^    ([0-9]+)'
       scope: constant.character.escape.c
+    - match: '^\w+:'
+      scope: constant.character.escape.c
     - match: '^ !  ([0-9]+)'
       scope: keyword.control.c
     - match: '^[^ ]+.*$'
