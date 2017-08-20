@@ -84,6 +84,18 @@ def focus_error_by_sel(sel_view):
         view.sel().add(sublime.Region(point, point))
 
 
+def get_help():
+
+    return [
+      "h:       Toggle help",
+      "escape:  Close dashboard",
+      "u:       Unfocus dashboard",
+      "enter:   Jump to error/warning under cursor (same as double clicking)",
+      "s:       Show error/warning under cursor (without focus)",
+      "w:       Toggle linter warnings"
+    ]
+
+
 def refresh_dashboard():
     mapping = build_view_by_id_map_for_window(
         sublime.active_window()
@@ -99,12 +111,7 @@ def refresh_dashboard():
     active_line_mapping = ["", ""]
 
     if show_help:
-        lines.append("h:       Toggle help")
-        lines.append("escape:  Close dashboard")
-        lines.append("u:       Unfocus dashboard")
-        lines.append("enter:   Jump to error/warning under cursor (same as double clicking)")
-        lines.append("s:       Show error/warning under cursor (without focus)")
-        lines.append("w:       Toggle linter warnings")
+        lines = lines + get_help()
     else:
         empty_line_length = len(lines)
         for vid, errors in persist.errors.items():
@@ -131,8 +138,12 @@ def refresh_dashboard():
                     for error in lineErrors:
                         col_number, msg = error
                         indent = " " + marker + "  "
-                        lines.append(indent + str(line_number + 1) + ": " + msg)
-                        active_line_mapping.append((view, line_number, col_number))
+                        lines.append(
+                            indent + str(line_number + 1) + ": " + msg
+                        )
+                        active_line_mapping.append(
+                            (view, line_number, col_number)
+                        )
 
             lines.append("")
             active_line_mapping.append(None)
