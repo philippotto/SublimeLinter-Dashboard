@@ -17,3 +17,13 @@ Screencast:
 - Ensure that you have [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) installed for Sublime Text 3 and that it works
 - Clone this repository into the package folder of your ST3 installation
 - Open "SublimeLinter Dashboard: Open" in the command palette
+
+# Shortcuts
+
+If you want to create a shortcut for opening the dashboard, you can open Preferences > Key Bindings and add the following line:
+
+```
+{ "keys": ["alt+shift+d"], "command": "sublime_linter_dashboard_open"}
+```
+
+You might want to adapt the shortcut so that it doesn't conflict with existing ones.
