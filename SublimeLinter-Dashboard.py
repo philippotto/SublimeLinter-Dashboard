@@ -7,8 +7,6 @@ persist = lint.persist
 
 # Each line index points to (view, line, col) or None
 active_line_mapping = []
-# Monkey patch sublime linter so that we get updates
-original_highlight = None
 
 
 def ensure_dashboard_is_cleared():
@@ -57,12 +55,12 @@ def show_dashboard():
     return mapping, linting_view
 
 
-def focus_error_by_sel(selView):
+def focus_error_by_sel(sel_view):
 
-    regions = selView.sel()
+    regions = sel_view.sel()
     if len(regions) == 0:
         return
-    (row, col) = selView.rowcol(regions[0].a)
+    (row, col) = sel_view.rowcol(regions[0].a)
 
     if row >= len(active_line_mapping):
         return
@@ -116,7 +114,7 @@ def refresh_dashboard():
             for error in lineErrors:
                 col_number, msg = error
                 indent = " " + marker + "  "
-                lines.append(indent + str(line_number) + ": " + msg)
+                lines.append(indent + str(line_number + 1) + ": " + msg)
                 active_line_mapping.append((view, line_number, col_number))
 
         lines.append("")
@@ -132,7 +130,6 @@ def refresh_dashboard():
 class SublimeLinterDashboard(sublime_plugin.EventListener):
 
     def on_post_save_async(self, view):
-
         refresh_dashboard()
 
 
@@ -171,35 +168,35 @@ class SublimeLinterDashboardDoubleclickCommand(sublime_plugin.TextCommand):
 class SublimeLinterDashboardOpen(sublime_plugin.WindowCommand):
 
     def run(self):
-
         show_dashboard()
         refresh_dashboard()
 
 
-def patch_linter():
-    global original_highlight
+# Monkey patch SublimeLinter's highlight function so that we receive updates
+class Patcher:
+    original_highlight = None
 
-    original_highlight = sublimelinter.SublimeLinter.highlight
+    @staticmethod
+    def patch_linter():
+        Patcher.original_highlight = sublimelinter.SublimeLinter.highlight
 
-    def replacement(self, view, linters, hit_time):
-        original_highlight(self, view, linters, hit_time)
-        refresh_dashboard()
+        def replacement(self, view, linters, hit_time):
+            Patcher.original_highlight(self, view, linters, hit_time)
+            refresh_dashboard()
 
-    sublimelinter.SublimeLinter.highlight = replacement
+        sublimelinter.SublimeLinter.highlight = replacement
 
-
-def unpatch_linter():
-    global original_highlight
-
-    if original_highlight:
-        sublimelinter.SublimeLinter.highlight = original_highlight
+    @staticmethod
+    def unpatch_linter():
+        if Patcher.original_highlight:
+            sublimelinter.SublimeLinter.highlight = Patcher.original_highlight
 
 
 def plugin_loaded():
-    patch_linter()
+    Patcher.patch_linter()
     ensure_dashboard_is_cleared()
     refresh_dashboard()
 
 
 def plugin_unloaded():
-    unpatch_linter()
+    Patcher.unpatch_linter()
